@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftEmvFormatParser",
+    name: "swift-emv-format-parser",
     
     platforms: [.macOS(.v11), .iOS(.v12), .tvOS(.v12), .watchOS(.v4)],
     
