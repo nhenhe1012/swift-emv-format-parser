@@ -20,6 +20,12 @@ struct SwiftEmvFormatParserTests {
         #expect(EmvFormatParser().crc16CCITTHexString(from: string) == "152A")
     }
     
+    @Test func testCheckSum3() async throws {
+        let string = "00020101021138560010A0000007270126000697043201121133666688880208QRIBFTTA53037045802VN6304152A"
+        let data = EmvFormatParser().qrCodeToData(string)
+        #expect(data?.isValidCheckSum() == true)
+    }
+    
     @Test func testQRCodeToData1() async throws {
         let string = "00020101021238560010A0000007270126000697041501121133666688880208QRIBFTTA530370454067900005802VN62240820dong gop quy vac xin630486D1"
         let valueString = "00020101021238560010A0000007270126000697041501121133666688880208QRIBFTTA530370454067900005802VN62240820dong gop quy vac xin6304"

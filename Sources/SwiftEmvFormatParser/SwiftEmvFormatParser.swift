@@ -11,8 +11,8 @@ public struct EmvFormatParser {
     
     public init() { }
     
-    public func qrCodeToData(_ qrCode: String) -> EmvData? {
-        var data = EmvData(array: [])
+    public func qrCodeToData(_ qrCode: String) -> EmvObject? {
+        var data = EmvObject(id: "root", length: 0, value: qrCode, array: [])
         var qrCodeData = qrCode
         
         while !qrCodeData.isEmpty {

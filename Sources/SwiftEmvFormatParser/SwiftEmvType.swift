@@ -105,12 +105,30 @@ public struct EmvObject: EmvObjectProtocol {
     var length: Int
     var value: String
     var array: [EmvObject]
-}
-
-public struct EmvData {
-    var array: [EmvObject]
     
-    func checksum() -> String? {
+    public func checksum() -> String? {
         return array.first(where: { $0.id == "63" })?.value
+    }
+    
+    public func getData() -> [EmvObject] {
+        return array
+    }
+    
+    public func getId() -> String {
+        return id
+    }
+    
+    public func getLength() -> Int {
+        return length
+    }
+    
+    public func getValue() -> String {
+        return value
+    }
+    
+    public func isValidCheckSum() -> Bool {
+        if id != "root" { return false }
+        let string = value.prefix(value.count - 4)
+        return EmvFormatParser().crc16CCITTHexString(from: String(string)) == checksum() ?? String(value.suffix(4))
     }
 }
